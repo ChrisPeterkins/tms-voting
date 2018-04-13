@@ -1,0 +1,51 @@
+
+      <% if current_user && current_user.admin? %>
+        <div class="row">
+          <div class="col">
+            <div class="center-box">
+              <p class="vote-text">Happy Election Day, <%= current_user.name %>!
+                                   Would you like to vote for The Penn State
+                                   Thespian's new executive board?</p>
+              <p class="vote-text">The current election is for: <%= @poll.topic %></p>
+              <p class="vote-text">There are currently <b></b><%= @poll.votes_summary %></b> vote(s) registered 
+                                    for this election.</p>
+              <div class="wrapper">
+                <%= button_to 'Vote', poll_path(@poll), :class => 'button purple-btn' %>
+                <%= button_to 'View Poll Results', poll_path(@poll), :class => 'button purple-btn' %>
+                <%= button_to 'Edit Poll', edit_poll_path(@poll), :class => 'button purple-btn' %>
+                <%= button_to 'Delete Poll', poll_path(@poll),
+                      method: :delete,
+                      class: 'button purple-btn', data: {confirm: 'Are you sure?'} %>
+                <%= button_to 'Create New Poll', new_poll_path, :class => 'button purple-btn' %>
+                <%= button_to 'Edit Users', users_path, method: :get, :class => 'button purple-btn' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% elsif current_user %>
+        <div class="center-box">
+          <% if current_user.active? %>
+            <p class="vote-text">Happy Election Day, <%= current_user.name %>!
+                  Would you like to vote for The Penn State
+                  Thespian's new executive board?</p>
+            <p class="vote-text">The current election is for: <%= @poll.topic %></p>
+              <div class="wrapper">
+                <%= button_to 'Vote', poll_path(@poll), :class => 'button purple-btn' %>
+              </div>
+          <% else %>
+            <p class="vote-text">Sorry you need to be an active member of The Penn State
+                Thespians in order to take part in elections.
+            </p>
+            <p class="vote-text">If you believe you are seeing this page in error, please 
+                contact Paul Basher.  
+            </p>
+          <% end %>
+        </div>
+      <% else %>
+         <div class="center-box">
+          <p class="vote-text">You need to be logged in to participate in elections!</p>
+            <div class="wrapper">
+              <%= link_to 'Log In', login_path, :class => 'btn-lg purple-btn' %>
+            </div>
+        </div>
+      <% end %>

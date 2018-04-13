@@ -1,0 +1,21 @@
+<h1>Thespian Members</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+  <% @users.each do |user| %>
+    <li>
+      Name: <%= link_to user.name, user, method: :activity %>
+      <% if user.active? %>
+        | <%= link_to "Set User to Inactive", user, method: :activity  %>
+      <% else %>
+        | <%= link_to "Set User to Active", user, method: :activity %>
+      <% end %>
+      <% if current_user.admin? && !current_user?(user) %>
+        | <%= link_to "Delete User", user, method: :delete, data: { confirm: "You sure?" } %>
+      <% end %> 
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>

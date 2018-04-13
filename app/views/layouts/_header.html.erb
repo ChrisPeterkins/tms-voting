@@ -1,0 +1,57 @@
+   <header class="navbar navbar-default navbar-fixed-top" id="topbar">
+        
+        <div class="container-fluid">
+            
+            <div class="navbar-header">
+                
+                <a class="navbar-brand" href="#">
+                    <img alt="Brand" src="https://psuthespians.com/images/logo.png">
+                        </a>
+                
+                <a href="index.html#main" class="navbar-brand" id="title">Thespians</a>
+                
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    
+             </div> <!-- end navbar-header -->
+            
+                
+              <div class="collapse navbar-collapse navbar-center-container" id="data-spy">
+                    
+                <ul class="nav navbar-nav navbar-center">
+                    
+                    <li><%= link_to "Home", root_path %></li>
+
+                    <li><a target="_blank" href="http://giveto.psu.edu/s/1218/thon/2014/p2p.aspx?sid=1218&gid=3&pgid=1135">THON</a></li>
+                    <li class="dropdown shows-drop">
+                        <a href="#" class="dropdown-toggle show-button" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Shows <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="index.html#main">Upcoming</a></li>
+                            <li><a href="index.html#upcoming">Previous</a></li>
+                            <li><a href="index.html#other">Children's Show</a></li>
+                            <li><a href="community.html#here">MasquerAIDS</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="about.html">About</a></li>
+                    <li id="no-display"><a href="contact.html">Contact</a></li>
+                    <% if logged_in? %>
+                      <li><%= link_to "Change Password", edit_user_path(current_user) %></li>
+                    <% end %>
+                    
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  <% if logged_in? %>    
+                    <li><%= link_to "Log out", logout_path, method: :delete %></li>
+                  <% else %>
+                    <li><%= link_to "Log in", login_path %></li>
+                  <% end %>
+                </ul>
+                
+    </div>
+  </div> <!-- container-fluid -->
+</header> <!-- navbar -->

@@ -1,0 +1,19 @@
+<div class="form">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+  
+      <% if current_user.admin? %>
+        <%= f.label :active, class: "checkbox inline" do %>
+        <%= f.check_box :active %>
+          <span>Active</span>
+        <% end %>
+      <% end %>
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
+    </div>

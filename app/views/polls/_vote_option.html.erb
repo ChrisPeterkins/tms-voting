@@ -1,0 +1,14 @@
+<div class="form-group">
+        <%= content_tag(:label) do %>
+          <% unless current_user.voted_for?(@poll) %>
+            <%= radio_button_tag 'vote_option[id]', option.id %>
+          <% end %>
+          <%= option.title %>
+        <% end %>
+        <% if current_user.admin? %>
+          <%= visualize_votes_for option %>
+        <p>
+          This poll has <%= (option.votes.count.to_f / @poll.votes_summary) * 100 %> % of the votes.
+        </p>
+        <% end %>
+      </div> 

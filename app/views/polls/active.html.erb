@@ -1,0 +1,37 @@
+
+      <% if current_user && current_user.admin? %>
+        <div class="row">
+          <div class="col">
+            <div class="center-box">
+              <p class="vote-text">Happy Election Day, <%= current_user.name %>!
+                                   Would you like to vote for The Penn State
+                                   Thespian's new executive board?</p>
+              <p class="vote-text">The current vote is for: <%= @poll.topic %></p>
+              <div class="wrapper">
+                <%= button_to 'Vote', poll_path(@poll), :class => 'button purple-btn' %>
+                <%= button_to 'Edit', edit_poll_path(@poll), :class => 'button purple-btn' %>
+                <%= button_to 'Delete', poll_path(@poll),
+                      method: :delete,
+                      class: 'button purple-btn', data: {confirm: 'Are you sure?'} %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% elsif current_user %>
+        <div class="center-box">
+          <p class="vote-text">Happy Election Day, <%= current_user.name %>!
+                Would you like to vote for The Penn State
+                Thespian's new executive board?</p>
+          <p class="vote-text">The current vote is for: <%= @poll.topic %></p>
+            <div class="wrapper">
+              <%= button_to 'Vote', poll_path(@poll), :class => 'button purple-btn' %>
+            </div>
+        </div>
+      <% else %>
+         <div class="center-box">
+          <p class="vote-text">You need to be logged in to participate in elections!</p>
+            <div class="wrapper">
+              <%= button_to 'Log In', login_path, :class => 'button purple-btn' %>
+            </div>
+        </div>
+      <% end %>

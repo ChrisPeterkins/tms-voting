@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col">
+    <div class="center-box">
+<%= form_tag votes_path, method: :post, remote: true, id: 'voting_form' do %>
+  <%= hidden_field_tag 'poll[id]', @poll.id %>
+
+  <%= render partial: 'polls/vote_option', collection: @poll.vote_options, as: :option %>
+
+  <% if current_user.voted_for?(@poll) %>
+    <p class="vote-text">You have already voted!</p>
+  <% else %>
+    <%= submit_tag 'Submit Vote', class: 'button purple-btn' %>
+  <% end %>
+<% end %>
+    </div>
+  </div>
+</div>
+
