@@ -57,5 +57,3 @@ group :production do
   gem 'pg', '~> 0.11'
 end
     
-
-ruby '2.1.2'
