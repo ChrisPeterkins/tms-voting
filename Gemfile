@@ -38,8 +38,6 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'debugger', group: [:development, :test]
 gem 'bootstrap-sass'
 
-#Use puma for out HTTP server in production
-#gem 'puma'
 
 gem 'jquery-turbolinks'
 gem "cocoon"
@@ -55,8 +53,8 @@ group :development, :test do
 end
   
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
+  gem 'pg'
 end
     
 
